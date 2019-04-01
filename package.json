@@ -1,0 +1,36 @@
+{
+  "name": "node-express-es7",
+  "version": "0.0.1",
+  "description": "Estrutura de projeto utilizando nodejs + express + babel",
+  "main": "app.js",
+  "scripts": {
+    "lint": "eslint",
+    "start": "nodemon --exec babel-node src/app.js",
+    "build": "babel src --out-dir dist",
+    "serve": "node dist/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "babel-plugin-root-import": "^6.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.10"
+  },
+  "repository": "git@github.com:icaro-tavares/node-express-es7.git",
+  "author": "Ícaro Tavares <icaroolimaa@gmail.com>",
+  "license": "ISC"
+}

@@ -1,0 +1,8 @@
+# Files
+.env
+.idea
+.vscode
+
+# Folders
+/dist
+/node_modules
