@@ -1,29 +1,29 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
-
 on:
   push:
-    branches: [ ci ]
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Create Release
 
 jobs:
   build:
+    name: Create Release
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged && startsWith(github.head_ref, 'RC')
     steps:
-      - uses: actions/checkout@master
-      - name: Tag and prepare release
-        id: tag_and_prepare_release
-        uses: K-Phoen/semver-release-action@master
-        with:
-          release_branch: master
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload release notes
-        if: steps.tag_and_prepare_release.outputs.tag
-        uses: Roang-zero1/github-create-release-action@master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          created_tag: ${{ steps.tag_and_prepare_release.outputs.tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
